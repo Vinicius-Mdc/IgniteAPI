@@ -4,7 +4,7 @@
   "main": "src/server.ts",
   "author": "Vinicius",
   "license": "MIT",
-  "type": "module",
+  //"type": "module",
   "scripts": {
     "start": "node ./dist/server.js",
     "build": "tsc -p .",

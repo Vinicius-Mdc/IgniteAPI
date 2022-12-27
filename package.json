@@ -5,8 +5,8 @@
   "author": "Vinicius",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node dist/server.js",
-    "build": "tsc",
+    "start": "node ./dist/server.js",
+    "build": "tsc -p .",
     "dev": "ts-node-dev --transpile-only ./src/server.ts",
     "lint": "eslint '**/*.{ts,tsx,js,jsx}'",
     "typeorm": "ts-node-dev  node_modules/typeorm/cli.js"

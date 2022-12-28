@@ -18,7 +18,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   if (err.sql) {
     res.status(500).json({ error: 'Algo deu errado.' })
   } else {
-    res.status(err.code).json({ message: err.message })
+    res.status(err.code || 500).json({ message: err.message })
   }
 })
 app.listen(process.env.PORT || 3000, () => {

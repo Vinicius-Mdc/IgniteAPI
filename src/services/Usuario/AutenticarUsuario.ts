@@ -1,8 +1,8 @@
-import { Usuario } from '../../entities/Usuario'
-import db from '../../database/dataSource'
+import { Usuario } from '../../entities/Usuario.js'
+import db from '../../database/dataSource.js'
 import { compare } from 'bcrypt'
-import { sign } from 'jsonwebtoken'
-import { ApiError } from '../../middlewares/ApiError'
+import jwt from 'jsonwebtoken'
+import { ApiError } from '../../middlewares/ApiError.js'
 
 type RespostaAutenticacaoUsuario = {
   id: string
@@ -23,7 +23,7 @@ export default async (
     if (!(await compare(senha, usuario.senha))) {
       throw new ApiError(400, 'Senha incorreta')
     }
-    const token = sign(
+    const token = jwt.sign(
       { nome: usuario.nome, id: usuario.id },
       process.env.JWT_SECRET,
       {

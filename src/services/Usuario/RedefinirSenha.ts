@@ -1,8 +1,8 @@
-import { Usuario } from '../../entities/Usuario'
-import db from '../../database/dataSource'
-import { verify } from 'jsonwebtoken'
+import { Usuario } from '../../entities/Usuario.js'
+import db from '../../database/dataSource.js'
+import jwt from 'jsonwebtoken'
 import { genSaltSync, hash } from 'bcrypt'
-import { ApiError } from '../../middlewares/ApiError'
+import { ApiError } from '../../middlewares/ApiError.js'
 
 type RespostaSolicitacaoUsuario = {
   mensagem: string
@@ -13,7 +13,7 @@ export default async (
   senha: string
 ): Promise<RespostaSolicitacaoUsuario | Error> => {
   const repo = db.getRepository(Usuario)
-  const decodedToken = verify(token, process.env.RESET_PASSWORD_SECRET)
+  const decodedToken = jwt.verify(token, process.env.RESET_PASSWORD_SECRET)
   if (typeof decodedToken !== 'string') {
     const usuario = await repo.findOneBy({
       id: decodedToken.id,

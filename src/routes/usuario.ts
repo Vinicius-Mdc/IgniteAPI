@@ -1,14 +1,14 @@
-import { registroUsuario } from '../controllers/Usuario/RegistroUsuario'
-import { autenticacaoUsuario } from '../controllers/Usuario/AutenticacaoUsuario'
+import { registroUsuario } from '../controllers/Usuario/RegistroUsuario.js'
+import { autenticacaoUsuario } from '../controllers/Usuario/AutenticacaoUsuario.js'
 import { Router } from 'express'
 import {
   EMAIL_REDEFINIR_SENHA,
   LOGIN,
   REGISTRO,
   validacao,
-} from '../validations/usuario.validation'
-import { redefinicaoDeSenha } from '../controllers/Usuario/RedefinirSenha'
-import { enviarEmailRedefinicaoDeSenha } from '../controllers/Usuario/EnviarEmailRedefinirSenha'
+} from '../validations/usuario.validation.js'
+import { redefinicaoDeSenha } from '../controllers/Usuario/RedefinirSenha.js'
+import { enviarEmailRedefinicaoDeSenha } from '../controllers/Usuario/EnviarEmailRedefinirSenha.js'
 
 const router = Router()
 

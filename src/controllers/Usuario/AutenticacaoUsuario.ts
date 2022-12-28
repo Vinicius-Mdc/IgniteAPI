@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { validationResult } from 'express-validator'
-import { ApiError } from '../../middlewares/ApiError'
-import AutenticarUsuario from '../../services/Usuario/AutenticarUsuario'
+import { ApiError } from '../../middlewares/ApiError.js'
+import AutenticarUsuario from '../../services/Usuario/AutenticarUsuario.js'
 
 export const autenticacaoUsuario = async (
   req: Request,

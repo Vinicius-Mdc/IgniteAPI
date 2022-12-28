@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { decode, JwtPayload } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 export const authenticate = async (
   req: Request,
@@ -12,7 +12,7 @@ export const authenticate = async (
       res.status(401).send({ message: 'Nenhum token encontrado' })
       return
     }
-    const decodedToken = decode(token) as JwtPayload
+    const decodedToken = jwt.decode(token) as jwt.JwtPayload
     if (decodedToken) {
       res.locals.uid = decodedToken.uid
       next()

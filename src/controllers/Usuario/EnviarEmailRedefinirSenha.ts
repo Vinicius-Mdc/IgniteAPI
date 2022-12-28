@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { validationResult } from 'express-validator'
-import { ApiError } from '../../middlewares/ApiError'
-import enviarEmailRedefinirSenha from '../../services/Usuario/EnviarEmailRedefinirSenha'
+import { ApiError } from '../../middlewares/ApiError.js'
+import enviarEmailRedefinirSenha from '../../services/Usuario/EnviarEmailRedefinirSenha.js'
 
 export const enviarEmailRedefinicaoDeSenha = async (
   req: Request,

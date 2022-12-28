@@ -1,7 +1,7 @@
-import { Usuario } from '../../entities/Usuario'
-import db from '../../database/dataSource'
-import { sign } from 'jsonwebtoken'
-import { ApiError } from '../../middlewares/ApiError'
+import { Usuario } from '../../entities/Usuario.js'
+import db from '../../database/dataSource.js'
+import jwt from 'jsonwebtoken'
+import { ApiError } from '../../middlewares/ApiError.js'
 import { createTransport } from 'nodemailer'
 
 type RespostaSolicitacaoUsuario = {
@@ -18,9 +18,13 @@ export default async (
 
   if (usuario) {
     //gerar token e salvar no banco
-    const token = sign({ id: usuario.id }, process.env.RESET_PASSWORD_SECRET, {
-      expiresIn: '1h',
-    })
+    const token = jwt.sign(
+      { id: usuario.id },
+      process.env.RESET_PASSWORD_SECRET,
+      {
+        expiresIn: '1h',
+      }
+    )
     console.log(token.length)
     const a = await repo.save({
       id: usuario.id,

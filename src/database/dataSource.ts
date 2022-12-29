@@ -1,6 +1,15 @@
 import 'dotenv/config'
 import { DataSource } from 'typeorm'
 
+const migrations =
+  process.env.PRODUCTION === 'true'
+    ? './dist/database/migrations/*.js'
+    : './src/database/migrations/*.ts'
+const entities =
+  process.env.PRODUCTION === 'true'
+    ? './dist/entities/*.js'
+    : './src/entities/*.ts'
+
 const AppDataSource = new DataSource({
   type: 'mysql',
   host: process.env.TYPEORM_HOST,
@@ -8,14 +17,8 @@ const AppDataSource = new DataSource({
   username: process.env.TYPEORM_USERNAME,
   password: process.env.TYPEORM_PASSWORD,
   database: process.env.TYPEORM_DATABASE,
-  migrations: [
-    `src/database/migrations/*.${
-      process.env.PRODUCTION === 'true' ? 'js' : 'ts'
-    }`,
-  ],
-  entities: [
-    `src/entities/*.${process.env.PRODUCTION === 'true' ? 'js' : 'ts'}`,
-  ],
+  migrations: [migrations],
+  entities: [entities],
 })
 
 AppDataSource.initialize()
